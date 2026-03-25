@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "yellow-grapes-dev",
+    "dev": "yellow-grapes-dev",
+    "prod": "yellow-grapes-prod"
+  },
+  "targets": {},
+  "etags": {}
+}

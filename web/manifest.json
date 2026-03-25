@@ -1,0 +1,35 @@
+{
+    "name": "Yellow Grapes",
+    "short_name": "Yellow Grapes",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#FAF8F6",
+    "theme_color": "#F9D932",
+    "description": "Yellow Grapes is a Taiwan-focused wine map and business directory for discovering wine-related businesses and wine education.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
