@@ -48,7 +48,9 @@ void main() {
       findsNothing,
     );
     expect(
-      find.textContaining('Yellow Grapes is an information platform only.'),
+      find.text(
+        'Yellow Grapes is an information platform only and does not facilitate alcohol sales. Users must be of legal drinking age (18 in Taiwan) to access alcohol-related content.',
+      ),
       findsOneWidget,
     );
     expect(find.text('Main coverage'), findsNothing);

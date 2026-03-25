@@ -248,12 +248,17 @@ class _HeaderTitle extends StatelessWidget {
 class _HeaderBrand extends StatelessWidget {
   const _HeaderBrand();
 
+  // Adjust these values directly for manual logo sizing and asset swaps.
+  static const String _logoAssetPath = 'assets/images/yellow_grapes_logo.png';
+  static const double _logoWidth = 160;
+  static const double _logoHeight = 160;
+
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/yellow_grapes_logo.png',
-      width: 40,
-      height: 40,
+      _logoAssetPath,
+      width: _logoWidth,
+      height: _logoHeight,
       fit: BoxFit.contain,
     );
   }
@@ -359,20 +364,6 @@ class _FooterLinks extends StatelessWidget {
   }
 }
 
-class _FooterNote extends StatelessWidget {
-  const _FooterNote();
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'Yellow Grapes is an information platform only and does not facilitate alcohol sales. Please drink responsibly.',
-      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        color: _SitePalette.footerText,
-      ),
-    );
-  }
-}
-
 class _SiteFooter extends StatelessWidget {
   const _SiteFooter();
 
@@ -382,7 +373,7 @@ class _SiteFooter extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(24, 16, 24, 20),
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
       decoration: const BoxDecoration(
         color: _SitePalette.footerBackground,
         border: Border(top: BorderSide(color: Colors.transparent)),
@@ -407,8 +398,6 @@ class _SiteFooter extends StatelessWidget {
                       _FooterLinks(),
                     ],
                   ),
-            const SizedBox(height: 16),
-            const _FooterNote(),
           ],
         ),
       ),
@@ -453,7 +442,9 @@ class _HomePage extends StatelessWidget {
 class _HeroSection extends StatelessWidget {
   const _HeroSection();
 
-  static const double _desktopStageHeight = 540;
+  static const double _desktopHeroContainerHeight = 596;
+  static const double _desktopHeroStageHeight = 540;
+  static const double _desktopPanelHeight = 360;
 
   @override
   Widget build(BuildContext context) {
@@ -484,7 +475,8 @@ class _HeroSection extends StatelessWidget {
 
     final Widget developerPanel = Card(
       child: Container(
-        padding: const EdgeInsets.all(20),
+        height: compact ? null : _desktopPanelHeight,
+        padding: const EdgeInsets.fromLTRB(20, 40, 20, 6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.zero,
           gradient: const LinearGradient(
@@ -500,66 +492,69 @@ class _HeroSection extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Developer Information',
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(color: _SitePalette.ink),
-            ),
-            const SizedBox(height: 10),
-            Text.rich(
-              TextSpan(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Developer Information',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(color: _SitePalette.ink),
+              ),
+              const SizedBox(height: 10),
+              Text.rich(
+                TextSpan(
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: _SitePalette.ink),
+                  children: <InlineSpan>[
+                    const TextSpan(
+                      text:
+                          'Yellow Grapes is proudly developed and maintained by ',
+                    ),
+                    TextSpan(
+                      text: companyName,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    const TextSpan(text: '.'),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 18),
+              const Divider(color: _SitePalette.outlineSoft),
+              const SizedBox(height: 14),
+              Text(
+                'Contact Us',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(color: _SitePalette.ink),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'For inquiries regarding the app, partnerships, or support, please contact our team at:',
                 style: Theme.of(
                   context,
                 ).textTheme.bodyMedium?.copyWith(color: _SitePalette.ink),
-                children: <InlineSpan>[
-                  const TextSpan(
-                    text:
-                        'Yellow Grapes is proudly developed and maintained by ',
-                  ),
-                  TextSpan(
-                    text: companyName,
-                    style: const TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                  const TextSpan(text: '.'),
-                ],
               ),
-            ),
-            const SizedBox(height: 18),
-            const Divider(color: _SitePalette.outlineSoft),
-            const SizedBox(height: 14),
-            Text(
-              'Contact Us',
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(color: _SitePalette.ink),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'For inquiries regarding the app, partnerships, or support, please contact our team at:',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: _SitePalette.ink),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Email: contact@torsade.com.tw',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: _SitePalette.ink,
-                fontWeight: FontWeight.w600,
+              const SizedBox(height: 10),
+              Text(
+                'Email: contact@torsade.com.tw',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: _SitePalette.ink,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Headquarters: New Taipei City, Taiwan',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: _SitePalette.ink,
+              const SizedBox(height: 8),
+              Text(
+                'Headquarters: New Taipei City, Taiwan',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: _SitePalette.ink,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -567,6 +562,7 @@ class _HeroSection extends StatelessWidget {
     return Card(
       child: Container(
         width: double.infinity,
+        height: compact ? null : _desktopHeroContainerHeight,
         padding: const EdgeInsets.all(28),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.zero,
@@ -615,12 +611,12 @@ class _HeroSection extends StatelessWidget {
               )
             else
               SizedBox(
-                height: _desktopStageHeight,
+                height: _desktopHeroStageHeight,
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Expanded(
-                      flex: 6,
+                      flex: 5,
                       child: Center(
                         child: ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 460),
@@ -630,17 +626,19 @@ class _HeroSection extends StatelessWidget {
                     ),
                     const SizedBox(width: 28),
                     const SizedBox(
-                      width: 228,
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 8),
-                          child: _HeroMarkerCluster(compact: false),
-                        ),
+                      width: 204,
+                      child: Center(
+                        child: _HeroMarkerCluster(compact: false),
                       ),
                     ),
                     const SizedBox(width: 28),
-                    Expanded(flex: 5, child: developerPanel),
+                    Expanded(
+                      flex: 6,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 56),
+                        child: developerPanel,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -1029,14 +1027,7 @@ class _ComplianceStrip extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Platform and alcohol-related notice',
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge?.copyWith(color: _SitePalette.bordeaux),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'Yellow Grapes is an information platform only. We do not sell alcohol. Users must be of legal drinking age (18 in Taiwan) to access alcohol-related content. Please drink responsibly.',
+            'Yellow Grapes is an information platform only and does not facilitate alcohol sales. Users must be of legal drinking age (18 in Taiwan) to access alcohol-related content.',
             style: Theme.of(
               context,
             ).textTheme.bodyLarge?.copyWith(color: _SitePalette.ink),
