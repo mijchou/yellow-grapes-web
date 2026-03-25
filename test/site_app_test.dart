@@ -56,7 +56,7 @@ void main() {
     expect(find.text('Contact Us'), findsOneWidget);
     expect(
       find.text(
-        'Yellow Grapes is proudly developed and maintained by Torsade Technology Limited Company.',
+        'Yellow Grapes is proudly developed and maintained by Torsade Technologies Company Limited.',
       ),
       findsOneWidget,
     );
@@ -66,7 +66,7 @@ void main() {
       ),
       findsOneWidget,
     );
-    expect(find.text('Email: mchou@torsade.com.tw'), findsOneWidget);
+    expect(find.text('Email: contact@torsade.com.tw'), findsOneWidget);
     expect(
       find.text('Headquarters: New Taipei City, Taiwan'),
       findsOneWidget,

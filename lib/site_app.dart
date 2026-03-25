@@ -201,14 +201,7 @@ class _SiteHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool compact = MediaQuery.sizeOf(context).width < 860;
-    final Widget title = Text(
-      appName,
-      textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-        color: _SitePalette.bordeaux,
-        fontWeight: FontWeight.w700,
-      ),
-    );
+    const Widget title = _HeaderBrand();
 
     return Container(
       width: double.infinity,
@@ -248,13 +241,20 @@ class _HeaderTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      appName,
-      textAlign: TextAlign.center,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-        color: _SitePalette.bordeaux,
-        fontWeight: FontWeight.w700,
-      ),
+    return const _HeaderBrand();
+  }
+}
+
+class _HeaderBrand extends StatelessWidget {
+  const _HeaderBrand();
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      'assets/images/yellow_grapes_logo.png',
+      width: 40,
+      height: 40,
+      fit: BoxFit.contain,
     );
   }
 }
@@ -510,9 +510,23 @@ class _HeroSection extends StatelessWidget {
               ).textTheme.titleMedium?.copyWith(color: _SitePalette.ink),
             ),
             const SizedBox(height: 10),
-            const _BulletLine(
-              text:
-                  'Yellow Grapes is proudly developed and maintained by Torsade Technology Limited Company.',
+            Text.rich(
+              TextSpan(
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: _SitePalette.ink),
+                children: <InlineSpan>[
+                  const TextSpan(
+                    text:
+                        'Yellow Grapes is proudly developed and maintained by ',
+                  ),
+                  TextSpan(
+                    text: companyName,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  const TextSpan(text: '.'),
+                ],
+              ),
             ),
             const SizedBox(height: 18),
             const Divider(color: _SitePalette.outlineSoft),
@@ -532,7 +546,7 @@ class _HeroSection extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Email: mchou@torsade.com.tw',
+              'Email: contact@torsade.com.tw',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: _SitePalette.ink,
                 fontWeight: FontWeight.w600,
@@ -851,58 +865,58 @@ class _MerchantCategoryGrid extends StatelessWidget {
         ? 2
         : 1;
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: merchantCategories.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
-        childAspectRatio: crossAxisCount == 1
-            ? 1.55
-            : crossAxisCount == 2
-            ? 1.08
-            : crossAxisCount == 3
-            ? 0.88
-            : 0.8,
-      ),
-      itemBuilder: (BuildContext context, int index) {
-        final MerchantCategory category = merchantCategories[index];
-        return Card(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.zero,
-              color: Colors.white,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: 48,
-                  height: 48,
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        const double spacing = 16;
+        final double itemWidth = crossAxisCount == 1
+            ? constraints.maxWidth
+            : (constraints.maxWidth - ((crossAxisCount - 1) * spacing)) /
+                  crossAxisCount;
+
+        return Wrap(
+          spacing: spacing,
+          runSpacing: spacing,
+          children: merchantCategories.map((MerchantCategory category) {
+            return SizedBox(
+              width: itemWidth,
+              child: Card(
+                child: Container(
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: category.color.withValues(alpha: 0.18),
                     borderRadius: BorderRadius.zero,
+                    color: Colors.white,
                   ),
-                  child: Icon(category.icon, color: _SitePalette.ink),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          color: category.color.withValues(alpha: 0.18),
+                          borderRadius: BorderRadius.zero,
+                        ),
+                        child: Icon(category.icon, color: _SitePalette.ink),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        category.englishName,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        category.englishDescription,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: _SitePalette.ink,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  category.englishName,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  category.englishDescription,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyMedium?.copyWith(color: _SitePalette.ink),
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          }).toList(),
         );
       },
     );
@@ -1262,42 +1276,6 @@ class _FooterLink extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
           color: _SitePalette.footerText,
         ),
-      ),
-    );
-  }
-}
-
-class _BulletLine extends StatelessWidget {
-  const _BulletLine({required this.text});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: 8,
-            height: 8,
-            margin: const EdgeInsets.only(top: 7),
-            decoration: const BoxDecoration(
-              color: _SitePalette.brand,
-              shape: BoxShape.circle,
-            ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              text,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: _SitePalette.ink),
-            ),
-          ),
-        ],
       ),
     );
   }

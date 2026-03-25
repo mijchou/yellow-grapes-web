@@ -4,9 +4,9 @@ const String appName = 'Yellow Grapes';
 const String appTagline = 'The Yellow Pages of wine';
 const String supportEmail = 'contact@yellowgrapes.app';
 const String supportMailtoUrl = 'mailto:contact@yellowgrapes.app';
-const String companyName = 'Torsade Technology Limited Company';
+const String companyName = 'Torsade Technologies Company Limited';
 const String companyCopyright =
-    '© 2026 Torsade Technology Limited Company. All rights reserved.';
+    '© 2026 Torsade Technologies Company Limited. All rights reserved.';
 const String effectiveDateEnglish = 'March 26, 2026';
 
 class MerchantCategory {
@@ -131,7 +131,7 @@ const List<LegalSection> privacySections = <LegalSection>[
   LegalSection(
     title: '1. Scope and Operator',
     englishBody:
-        'This Privacy Policy applies to the Yellow Grapes mobile application and related services operated by Torsade Technology Limited Company. It explains how we collect, use, store, protect, and share personal data when users browse merchant information, create accounts, save places, submit edits, claim businesses, or contact us.',
+        'This Privacy Policy applies to the Yellow Grapes mobile application and related services operated by Torsade Technologies Company Limited. It explains how we collect, use, store, protect, and share personal data when users browse merchant information, create accounts, save places, submit edits, claim businesses, or contact us.',
   ),
   LegalSection(
     title: '2. Data We Collect',
@@ -164,7 +164,7 @@ const List<LegalSection> termsSections = <LegalSection>[
   LegalSection(
     title: '1. Acceptance and Service Scope',
     englishBody:
-        'These Terms of Service govern use of the Yellow Grapes mobile application and related services operated by Torsade Technology Limited Company. By accessing or using Yellow Grapes, users agree to these terms and the Privacy Policy published on this site.',
+        'These Terms of Service govern use of the Yellow Grapes mobile application and related services operated by Torsade Technologies Company Limited. By accessing or using Yellow Grapes, users agree to these terms and the Privacy Policy published on this site.',
   ),
   LegalSection(
     title: '2. Nature of the Service',
