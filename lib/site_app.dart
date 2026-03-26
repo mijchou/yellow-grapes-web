@@ -356,7 +356,7 @@ class _FooterLinks extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         _FooterLink(
-          label: 'contact@yellowgrapes.app',
+          label: 'contact@torsade.com.tw',
           onTap: (_) => openExternalLink(supportMailtoUrl),
         ),
       ],
@@ -443,8 +443,8 @@ class _HeroSection extends StatelessWidget {
   const _HeroSection();
 
   static const double _desktopHeroContainerHeight = 596;
-  static const double _desktopHeroStageHeight = 540;
-  static const double _desktopPanelHeight = 360;
+  static const double _desktopHeroStageHeight = 516;
+  static const double _desktopPanelHeight = 450;
 
   @override
   Widget build(BuildContext context) {
@@ -476,7 +476,7 @@ class _HeroSection extends StatelessWidget {
     final Widget developerPanel = Card(
       child: Container(
         height: compact ? null : _desktopPanelHeight,
-        padding: const EdgeInsets.fromLTRB(20, 40, 20, 6),
+        padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.zero,
           gradient: const LinearGradient(
@@ -563,7 +563,7 @@ class _HeroSection extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: compact ? null : _desktopHeroContainerHeight,
-        padding: const EdgeInsets.all(28),
+        padding: EdgeInsets.fromLTRB(28, compact ? 28 : 40, 28, compact ? 28 : 40),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.zero,
           gradient: const LinearGradient(
@@ -613,7 +613,7 @@ class _HeroSection extends StatelessWidget {
               SizedBox(
                 height: _desktopHeroStageHeight,
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Expanded(
                       flex: 5,
@@ -632,13 +632,7 @@ class _HeroSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 28),
-                    Expanded(
-                      flex: 6,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 56),
-                        child: developerPanel,
-                      ),
-                    ),
+                    Expanded(flex: 6, child: developerPanel),
                   ],
                 ),
               ),

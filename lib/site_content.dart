@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 const String appName = 'Yellow Grapes';
 const String appTagline = 'The Yellow Pages of wine';
-const String supportEmail = 'contact@yellowgrapes.app';
-const String supportMailtoUrl = 'mailto:contact@yellowgrapes.app';
+const String supportEmail = 'contact@torsade.com.tw';
+const String supportMailtoUrl = 'mailto:contact@torsade.com.tw';
 const String companyName = 'Torsade Technologies Company Limited';
 const String companyCopyright =
     '© 2026 Torsade Technologies Company Limited. All rights reserved.';
@@ -156,7 +156,7 @@ const List<LegalSection> privacySections = <LegalSection>[
   LegalSection(
     title: '6. Minors, Policy Updates, and Contact',
     englishBody:
-        'Yellow Grapes focuses on alcohol-related merchant information. We do not intend for users under the legal drinking age in Taiwan to register for alcohol-related interactions. We may revise this policy from time to time and will publish updates on this site. Privacy questions can be sent to contact@yellowgrapes.app.',
+        'Yellow Grapes focuses on alcohol-related merchant information. We do not intend for users under the legal drinking age in Taiwan to register for alcohol-related interactions. We may revise this policy from time to time and will publish updates on this site. Privacy questions can be sent to contact@torsade.com.tw.',
   ),
 ];
 
@@ -194,6 +194,6 @@ const List<LegalSection> termsSections = <LegalSection>[
   LegalSection(
     title: '7. Updates and Contact',
     englishBody:
-        'We may update these terms as the service evolves. Continued use after an update means the revised terms apply to the maximum extent permitted by law. Questions about these terms may be sent to contact@yellowgrapes.app.',
+        'We may update these terms as the service evolves. Continued use after an update means the revised terms apply to the maximum extent permitted by law. Questions about these terms may be sent to contact@torsade.com.tw.',
   ),
 ];
